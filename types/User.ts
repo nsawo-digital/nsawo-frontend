@@ -2,13 +2,14 @@ import { Transaction } from "./Transaction";
 import { Wallet } from "./Wallet";
 
 export interface User{
-    id: string;
+    id?: string;
     username?: string;
     email?: string;
+    password?: string;
     picture_filepath?: string;
 
-    wallets: Wallet[];
-    transactions: Transaction[];
+    wallets?: Wallet[];
+    transactions?: Transaction[];
 }
 
 export interface AuthenticatedUser extends User {

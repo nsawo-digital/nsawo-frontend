@@ -1,7 +1,5 @@
-export default function Page(){
+export default function Wallets(){
     return(
-        <div>
-            Wallets Slot
-        </div>
+        <div>Wallets</div>
     )
 }

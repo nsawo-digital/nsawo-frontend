@@ -1,11 +1,9 @@
 "use client"
 import { useState } from "react";
-import { useAuth } from "@/utils/authContext";
 import { NavLink } from "@/types/NavLink";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-const apiUrl = '';
-
+import { handleLogout } from "../login/communicator";
 
 //media query in javascript to handle sidebar collapse on different screens
 const phoneWindowSize = window.matchMedia("(max-width: 700px)");
@@ -16,7 +14,6 @@ const bars_icon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0
 
 
 export default function Sidebar(){
-    const {authUser, unsetCurrentUser} = useAuth();
     const [hidden, setHidden] = useState(phoneWindowSize.matches);
     const imgUrl = "/app-logo.jpeg";
 
@@ -25,7 +22,7 @@ export default function Sidebar(){
     ]
 
     const links2: NavLink[] = [
-        {pathName: '#' + authUser?.id, name: 'Profile'},
+        {pathName: '#', name: 'Profile'},
     ]
 
     return(
@@ -53,7 +50,7 @@ export default function Sidebar(){
                             <LinkItem l={li} key={li.name}/>
                         )}
                         <button type="button" className="p-2 rounded-lg bg-black/50 ring-1 ring-black text-white" 
-                        onClick={() => {unsetCurrentUser()}}>
+                        onClick={() => { handleLogout()}}>
                             Logout
                         </button>
                     </div>

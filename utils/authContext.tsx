@@ -1,40 +1,65 @@
-import { User } from '@/types/User';
-import {useEffect, createContext, useContext, useState } from 'react';
+'use server'
+import { secretKey } from "@/types/NavLink";
+import { SignJWT, jwtVerify } from "jose";
+import { cookies } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
 
-interface contextProps {
-    authUser?: User | null;
-    setCurrentUser?: any;
-    unsetCurrentUser?: any;
+const key = new TextEncoder().encode(secretKey);
+
+export async function encrypt(payload: any) {
+  return await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("480 sec from now")
+    .sign(key);
 }
 
-const AuthContext = createContext<contextProps>({});
-export const AuthProvider = ({ children }: any) => {
-  const [authUser, setAuthUser] = useState<User | null>(null);
+export async function decrypt(input: string): Promise<any> {
+  const { payload } = await jwtVerify(input, key, {
+    algorithms: ["HS256"],
+  });
+  return payload;
+}
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setAuthUser(JSON.parse(storedUser));
-    }
-  }, []);
+export async function login(formData: FormData) {
+  // Verify credentials && get the user
 
-  const setCurrentUser = (userData: User) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    setAuthUser(userData);
-  };
+  const user = { email: formData.get("email"), name: "John" };
 
-  const unsetCurrentUser = () => {
-    setAuthUser(null);
-    localStorage.removeItem('user');
-  };
+  // Create the session
+  const expires = new Date(Date.now() + 60 * 1000);
+  const session = await encrypt({ user, expires });
 
-  return (
-    <AuthContext.Provider value={{ authUser, setCurrentUser, unsetCurrentUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  // Save the session in a cookie
+  cookies().set("session", session, { expires, httpOnly: true });
+}
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export async function logout() {
+  // Destroy the session
+  cookies().set("session", "", { expires: new Date(0) });
+}
+
+export async function getSession() {
+  const session = cookies().get("session")?.value;
+  if (!session) return null;
+  return await decrypt(session);
+}
+
+export async function updateSession(request: NextRequest) {
+  const session = request.cookies.get("session")?.value;
+  console.log('not found')
+  if (!session) return;
+
+  // Refresh the session so it doesn't expire
+  const parsed = await decrypt(session);
+  console.log("parsed: " + parsed)
+  parsed.expires = new Date(Date.now() + 480 * 1000);
+  const res = NextResponse.next();
+  res.cookies.set({
+    name: "session",
+    value: await encrypt(parsed),
+    httpOnly: true,
+    expires: parsed.expires,
+  });
+  return res;
+}

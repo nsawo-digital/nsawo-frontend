@@ -11,11 +11,11 @@ export interface Wallet {
 }
 
 export interface DigitalCurrency{
-    id: string;
+    id?: string;
     abbreviation: string;
     name: string;
-    worth_in_dollars: number;
-    logo: string;
+    worthInDollars: number;
+    logo?: any;
 
     wallets: Wallet[];
 }
@@ -30,4 +30,8 @@ export function deposit(wallet_id: string, amount: number){
 
 export function withdraw(wallet_id: string, amount: number){
 
+}
+
+export const fetchCurrencies = async () => {
+    
 }
