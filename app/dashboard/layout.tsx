@@ -7,12 +7,12 @@ export default function Layout(
     {children: ReactNode, create: ReactNode, wallets: ReactNode}
     ){
     return(
-            <main className="md:lg:flex bg-gradient-to-br from-green-200 via-white to-pink-200">
+            <main className="md:lg:flex bg-white">
                 <Sidebar />
                 <div className="w-full">
                     <UpperNav />
-                    <div className="w-full grid grid-cols-2">
-                        {children}
+                    <div className="w-full grid grid-cols-2 p-2">
+                        {/*children*/}
                         {wallets}
                         {create}
                     </div>

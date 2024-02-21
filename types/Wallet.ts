@@ -1,13 +1,14 @@
 import { User } from "./User";
 
 export interface Wallet {
-    id: string;
-    user_id: string;
+    id?: string;
+    user_id?: string;
     name: string;
-    digital_currency_id: string;
+    digital_currency_id?: string;
+    balance: number;
 
     digitalCurrency: DigitalCurrency;
-    user: User
+    user?: User
 }
 
 export interface DigitalCurrency{

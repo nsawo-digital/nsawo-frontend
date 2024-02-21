@@ -1,14 +1,14 @@
 import { DigitalCurrency } from "@/types/Wallet"
 import { bitcoinLogo, ethereumLogo } from "@/utils/svgLogos"
 
-const ethereum: DigitalCurrency = {
+export const ethereum: DigitalCurrency = {
     name: 'Ethereum',
     abbreviation: "ETH",
     worthInDollars: 20000.2,
     logo: ethereumLogo,
     wallets: []
 }
-const bitcoin: DigitalCurrency = {
+export const bitcoin: DigitalCurrency = {
     name: 'Bitcoin',
     abbreviation: "BTC",
     worthInDollars: 200230.2,

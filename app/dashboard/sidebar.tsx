@@ -26,10 +26,10 @@ export default function Sidebar(){
     ]
 
     return(
-        <div className='print:hidden bg-green-400/50 to-pink-500 
+        <div className='print:hidden bg-green-300 backdrop-blur-md
                         md:lg:min-h-screen p-4 w-full md:lg:w-60 
                         border-x-slate-700 overscroll-contain min-w-[300px]
-                        sticky top-0
+                        sticky -bottom-0
         '>
             {phoneWindowSize.matches &&
             <button onClick={() => setHidden(!hidden)} className="-ml-0">
@@ -49,7 +49,7 @@ export default function Sidebar(){
                         {links2.map(li => 
                             <LinkItem l={li} key={li.name}/>
                         )}
-                        <button type="button" className="p-2 rounded-lg bg-black/50 ring-1 ring-black text-white" 
+                        <button type="button" className="p-2 rounded-lg bg-emerald-700/50 ring-1 ring-green-900 text-white" 
                         onClick={() => { handleLogout()}}>
                             Logout
                         </button>
