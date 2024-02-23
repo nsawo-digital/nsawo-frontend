@@ -16,7 +16,7 @@ export interface DigitalCurrency{
     abbreviation: string;
     name: string;
     worthInDollars: number;
-    logo?: any;
+    picture?: any;
 
     wallets: Wallet[];
 }

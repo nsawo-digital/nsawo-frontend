@@ -11,7 +11,7 @@ export default function Layout(
                 <Sidebar />
                 <div className="w-full">
                     <UpperNav />
-                    <div className="w-full grid grid-cols-2 p-2">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 p-2">
                         {/*children*/}
                         {wallets}
                         {create}

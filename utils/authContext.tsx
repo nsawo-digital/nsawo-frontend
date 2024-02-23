@@ -1,5 +1,6 @@
 'use server'
 import { secretKey } from "@/types/NavLink";
+import { User } from "@/types/User";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -43,6 +44,12 @@ export async function getSession() {
   const session = cookies().get("session")?.value;
   if (!session) return null;
   return await decrypt(session);
+}
+
+export async function getAuthUser(){
+  const session = await getSession()
+  const user: User = session.authenticatedUser
+  return user;
 }
 
 export async function updateSession(request: NextRequest) {

@@ -1,26 +1,29 @@
 "use client"
 import { useFormState } from "react-dom";
 import { useFormStatus } from "react-dom";
-import { handleCreateWallet } from "./communicator";
+import { fetchDigitalCurrencies, handleCreateWallet,  } from "./communicator";
 import { useEffect, useState } from "react";
 import { DigitalCurrency } from "@/types/Wallet";
-import { bitcoin, ethereum } from "../navigation";
 
 export default function CreateWallet(){
     const formStatus = useFormStatus();
     const [digitalCurrencies, setDigitalCurrencies] = useState<DigitalCurrency[]>([])
     const [formMsg, formAction] = useFormState(handleCreateWallet, '')
+    const fetched = fetchDigitalCurrencies()
     useEffect(() => {
-        setDigitalCurrencies([ethereum, bitcoin])
-    })
+        fetched.then(data =>
+            setDigitalCurrencies(data)
+        )
+    }, [])
 
     return (
-        <div className=" items-center flex justify-center bg-no-repeat bg-cover text-white">
+        <div className="flex justify-center text-white">
             <div className="flex justify-center">
                 <section>
                     <div className="text-center text-3xl mx-2 mb-4 font-bold bg-gradient-to-r from-green-500 to-purple-500 inline-block text-transparent bg-clip-text">
                       Create new wallet
                     </div>
+
                 <form className="px-6 py-8 rounded-lg bg-black/50 
                                 backdrop-blur-md md:w-80 mx-2 md:mx-auto" 
                         action={formAction}>
@@ -42,15 +45,15 @@ export default function CreateWallet(){
   
                     <div className="mt-4">
                         <div className="">
-                            <label htmlFor="password">Currency: </label>
+                            <label htmlFor="currencyId">Currency: </label>
                         </div>
                         <div className="">
                            <select name="currencyId" className="rounded-md p-1 
-                                            bg-slate-50/10 w-full"
+                                            bg-slate-50/10 w-full" required
                             >
                                 <option value=''>--Choose currency--</option>
                                 {digitalCurrencies.map(currency => 
-                                    <option value=''>{currency.name} {currency.abbreviation}</option>
+                                    <option value={currency.id}>{currency.name} {currency.abbreviation}</option>
                                 )}
                            </select>
                         </div>
