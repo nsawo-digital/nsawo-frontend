@@ -2,14 +2,12 @@ import { User } from "./User";
 import { Wallet } from "./Wallet";
 
 export interface Transaction {
-    id: string;
-    user_id: string;
-    wallet_id: string;
+    id?: string;
     amount: number;
-    created_at: Date;
-    tx_type: "deposit" | "withdrawal";
+    createdAt?: Date;
+    txType: "deposit" | "withdrawal";
     balance: number;
 
-    user: User;
-    Wallet: Wallet;
+    user?: User;
+    Wallet?: Wallet;
 }

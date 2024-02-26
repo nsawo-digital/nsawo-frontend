@@ -1,4 +1,4 @@
-export const bitcoinLogo = <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" width="100%" height="100%" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+const bitcoinLogo = <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" width="100%" height="100%" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
 viewBox="0 0 4091.27 4091.73">
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
@@ -9,7 +9,7 @@ viewBox="0 0 4091.27 4091.73">
  </g>
 </svg>
 
-export const ethereumLogo = <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" width="100%" height="100%" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+const ethereumLogo = <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" width="100%" height="100%" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
 viewBox="0 0 784.37 1277.39"
  xmlnsXlink="http://www.w3.org/1999/xlink">
  <g id="Layer_x0020_1">
@@ -26,3 +26,10 @@ viewBox="0 0 784.37 1277.39"
   </g>
  </g>
 </svg>
+
+const logos = new Map<string, JSX.Element>([
+    ['ETH', ethereumLogo],
+    ['BTC', bitcoinLogo],
+])
+
+export default logos;

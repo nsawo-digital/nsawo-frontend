@@ -18,7 +18,7 @@ export default function Sidebar(){
     const imgUrl = "/app-logo.jpeg";
 
     const links: NavLink[] = [
-
+        {pathName: '/dashboard', name: 'Home'}
     ]
 
     const links2: NavLink[] = [
@@ -95,7 +95,7 @@ function LinkItem({l}: linkProps){
                 </ul>
               </span>
             :
-            <Link className={`flex justify-between hover:bg-slate-200/20 p-2 rounded-md ${current.includes(l.pathName) && 'border-b-2'}`}
+            <Link className={`flex justify-between hover:bg-slate-200/20 p-2 rounded-md ${current.includes(l.pathName) && 'bg-slate-200/20'}`}
                 href={l.pathName}>
                 {l.name}
             </Link>
