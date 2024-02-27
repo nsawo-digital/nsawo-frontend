@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { updateSession } from './utils/authContext'
  
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const authToken = request.cookies.get('session')?.value
     console.log("baseUrl: " + request.url)
     console.log("destination: " + request.destination)

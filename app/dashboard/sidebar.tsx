@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { handleLogout } from "../login/communicator";
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
+
 
 //media query in javascript to handle sidebar collapse on different screens
-const phoneWindowSize = window.matchMedia("(max-width: 700px)");
 
 const bars_icon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -15,7 +16,8 @@ const bars_icon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0
 
 
 export default function Sidebar(){
-    const [hidden, setHidden] = useState(phoneWindowSize.matches);
+    const phoneWindowSize = useMediaQuery({maxWidth: 700});
+    const [hidden, setHidden] = useState(phoneWindowSize);
     const imgUrl = "/app-logo.jpeg";
 
     const links: NavLink[] = [
@@ -32,7 +34,7 @@ export default function Sidebar(){
                         border-x-slate-700 overscroll-contain min-w-[300px]
                         sticky -bottom-0
         '>
-            {phoneWindowSize.matches &&
+            {phoneWindowSize &&
             <button onClick={() => setHidden(!hidden)} className="-ml-0">
                 {bars_icon}
             </button>
