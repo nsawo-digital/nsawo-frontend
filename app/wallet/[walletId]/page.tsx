@@ -34,7 +34,7 @@ export default function Page({params}: {params: {walletId: string}}){
                     else
                         setMessage('Failed to connect to backend server')
                 })
-    }, [])
+    }, [params.walletId])
 
     console.log('wallet: ' + wallet)
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function Page({params}: {params: {walletId: string}}){
                     else
                         setMessage('Failed to connect to backend server')
         })
-    }, [offset])
+    }, [offset, limit, params.walletId])
 
     return(
         <div>

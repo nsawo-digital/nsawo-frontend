@@ -4,7 +4,7 @@ import { Wallet } from "./Wallet";
 export interface Transaction {
     id?: string;
     amount: number;
-    createdAt?: Date;
+    createdAt?: string;
     txType: "deposit" | "withdrawal";
     balance: number;
 

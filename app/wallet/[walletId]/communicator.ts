@@ -37,8 +37,9 @@ export async function getWalletTransactions(walletId: string, limit: number, off
 }
 
 //this amount is in crypto
-export async function deposit(walletId: string, formData: FormData) {
+export async function deposit(intialstate: string, formData: FormData) {
     const amount = formData.get('amount');
+    const walletId = formData.get('walletId');
     let response = ''
     await api.post(`wallet/deposit/${walletId}`, {amount: amount})
     .then(r => {
@@ -52,7 +53,8 @@ export async function deposit(walletId: string, formData: FormData) {
 }
 
 //this amount is in crypto
-export async function withdraw(walletId: string, formData: FormData) {
+export async function withdraw(intialstate: string, formData: FormData) {
+    const walletId = formData.get('walletId');
     const amount = formData.get('amount')
     const password = formData.get('password')
     let response= ''
