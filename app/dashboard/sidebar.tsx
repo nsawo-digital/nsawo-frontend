@@ -4,6 +4,7 @@ import { NavLink } from "@/types/NavLink";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { handleLogout } from "../login/communicator";
+import Image from "next/image";
 
 //media query in javascript to handle sidebar collapse on different screens
 const phoneWindowSize = window.matchMedia("(max-width: 700px)");
@@ -36,7 +37,7 @@ export default function Sidebar(){
                 {bars_icon}
             </button>
             }
-            <img  hidden={hidden} src={imgUrl} className="rounded-full w-1/3 mx-auto mb-4" alt="logo" />
+            <Image  hidden={hidden} src={imgUrl} className="rounded-full w-1/3 mx-auto mb-4" alt="logo" />
             <div className="text-lg font-bold text-center text-green-700">Nsawo Digital Wallet</div>
             <nav hidden={hidden} className="text-white rounded-md overscroll-contain sticky top-0 bg-black/20 p-3 min-h-[300px]">
                 <ul className="divide-y divide-gray-50">

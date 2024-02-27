@@ -11,6 +11,9 @@ export default function WithdrawCard({wallet}: {wallet: Wallet}){
     const [walletBalance, setWalletBalance] = useState<number>(0)
     const [hidden, setHidden] = useState<boolean>(true)
 
+    const formStatus = useFormStatus();
+    const [formMsg, formAction] = useFormState(withdraw, '')
+
     if(!wallet.id){
         return(
             <div>Wallet not reachable</div>
@@ -35,8 +38,6 @@ export default function WithdrawCard({wallet}: {wallet: Wallet}){
         setWalletBalance(Number(wallet.balance) - convertToCrypto(value, wallet))
     }
 
-    const formStatus = useFormStatus();
-    const [formMsg, formAction] = useFormState(withdraw, wallet.id)
 
   return (
     <div className="flex justify-center text-white">
@@ -61,6 +62,9 @@ export default function WithdrawCard({wallet}: {wallet: Wallet}){
                     />
                 </div>
             </div>
+
+            <input type="hidden" value={wallet.id} name="walletId" />
+
 
             <div className="mt-4" hidden={hidden}>
                 <div className="">
@@ -99,7 +103,7 @@ export default function WithdrawCard({wallet}: {wallet: Wallet}){
                 </div>
                 <div className="w-full">
                     {walletBalance < 0 ? 
-                        <p className="text-xl">Can't withdraw this money</p> 
+                        <p className="text-xl">Cant withdraw this money</p> 
                     :<>
                         <p className="text-xl">{wallet.digitalCurrency.abbreviation}: {walletBalance}</p>
                         <p className="text-xl">${convertFromCrypto(walletBalance, wallet)}</p>

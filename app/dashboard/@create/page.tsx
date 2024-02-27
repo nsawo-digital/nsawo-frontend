@@ -14,7 +14,7 @@ export default function CreateWallet(){
         fetched.then(data =>
             setDigitalCurrencies(data)
         )
-    }, [])
+    }, [fetched])
 
     return (
         <div className="flex justify-center text-white">
@@ -53,7 +53,7 @@ export default function CreateWallet(){
                             >
                                 <option value=''>--Choose currency--</option>
                                 {digitalCurrencies.map(currency => 
-                                    <option value={currency.id}>{currency.name} {currency.abbreviation}</option>
+                                    <option key={currency.id} value={currency.id}>{currency.name} {currency.abbreviation}</option>
                                 )}
                            </select>
                         </div>

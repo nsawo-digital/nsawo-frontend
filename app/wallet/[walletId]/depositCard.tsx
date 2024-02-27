@@ -11,6 +11,9 @@ export default function DepositCard({wallet}: {wallet: Wallet}){
     const [walletBalance, setWalletBalance] = useState<number>(0)
     const [hidden, setHidden] = useState<boolean>(true)
 
+    const formStatus = useFormStatus();
+    const [formMsg, formAction] = useFormState(deposit, '')
+    
     if(!wallet.id){
         return(
             <div>Wallet not reachable</div>
@@ -35,8 +38,6 @@ export default function DepositCard({wallet}: {wallet: Wallet}){
         setWalletBalance(Number(wallet.balance) + convertToCrypto(value, wallet))
     }
 
-    const formStatus = useFormStatus();
-    const [formMsg, formAction] = useFormState(deposit, wallet.id)
 
   return (
     <div className="flex justify-center text-white">
@@ -50,6 +51,9 @@ export default function DepositCard({wallet}: {wallet: Wallet}){
                 <div className="">
                     <label htmlFor="amountInDollars">Amount in Dollars: </label>
                 </div>
+
+                <input type="hidden" value={wallet.id} name="walletId" />
+
                 <div className="w-full">
                     <input type="number" 
                             name="amountInDollars"

@@ -26,7 +26,7 @@ export default async function UpperNav(){
     return(
         <nav className="flex sticky top-0 justify-around bg-black/20 backdrop-blur-md p-2 z-10">
             {currencies.map(currency => 
-                <div className="flex">
+                <div key={currency.id} className="flex">
                     <span className="h-5 mr-1">{logos.get(currency.abbreviation)}</span>
                     <p className="font-bold">{currency.abbreviation}</p>
                     <p className="bg-blue-300 rounded-md mx-2 px-2">${currency.worthInDollars}</p>

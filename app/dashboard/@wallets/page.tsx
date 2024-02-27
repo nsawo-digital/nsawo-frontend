@@ -23,7 +23,7 @@ export default async function Wallets(){
     )
 }
 
-export function WalletCard({item}: {item: Wallet}){
+export async function WalletCard({item}: {item: Wallet}){
     return(
     <div className="max-w-sm p-6 bg-gradient-to-br from-purple-600 to-emerald-500 border border-gray-200 rounded-lg shadow">
         <div className="h-10">{logos.get(item.digitalCurrency.abbreviation)}</div>
