@@ -14,7 +14,7 @@ export default function CreateWallet(){
         fetched.then(data =>
             setDigitalCurrencies(data)
         )
-    }, [fetched])
+    }, [])
 
     return (
         <div className="flex justify-center text-white">
