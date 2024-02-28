@@ -29,7 +29,7 @@ export default async function UpperNav(){
                 <div key={currency.id} className="flex">
                     <span className="h-5 mr-1">{logos.get(currency.abbreviation)}</span>
                     <p className="font-bold">{currency.abbreviation}</p>
-                    <p className="bg-blue-300 rounded-md mx-2 px-2">&#36{currency.worthInDollars}</p>
+                    <p className="bg-blue-300 rounded-md mx-2 px-2">{'$' + currency.worthInDollars}</p>
                 </div>    
             )}
             <p className="font-bold text-green-500">{authUser.username}</p>
