@@ -3,7 +3,7 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
+/*
 module.exports = {
     webpack: (config, { isServer }) => {
       if (!isServer) {
@@ -15,3 +15,4 @@ module.exports = {
       return config;
     },
   };
+  */

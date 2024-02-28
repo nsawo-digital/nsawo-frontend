@@ -1,27 +1,8 @@
 'use server'
 import { Transaction } from "@/types/Transaction"
-import { Wallet } from "@/types/Wallet";
 import { api } from "@/utils/axiosCustomizer";
 
 interface MyResponse {data?: any, message: string}
-/*
-export async function getWallet(walletId: string): Promise<MyResponse>{
-    let returned: {data?: Wallet, message: string} = {message: ''};
-    await api.get(`/wallet/${walletId}`)
-    .then(r => {
-        console.log(r.data)
-        returned.data =  r.data;
-        returned.message = "Successful";
-    }).catch(e => {
-        console.error(e)
-        if(e.response)
-            returned = {message: e.response.data.message}
-        else
-            returned = {message: 'Failed to connect to backend server'}
-    })
-
-    return returned;
-}*/
 
 export async function getWalletTransactions(walletId: string, limit: number, offset: number): Promise<Transaction[]>{
     let transactions: Transaction[] = [];
