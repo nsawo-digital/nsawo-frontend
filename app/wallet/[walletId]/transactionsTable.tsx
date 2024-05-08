@@ -38,7 +38,7 @@ export default function TransactionsTable({transactions}: {transactions: Transac
                             {t.balance}
                         </td>
                         <td className="px-6 py-4">
-                            {t.createdAt}
+                            {t.createdAt?.split('T')[0]}
                         </td>
                     </tr>
                     ):
